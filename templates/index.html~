@@ -1,0 +1,43 @@
+<html>
+
+
+<head>
+</head>
+
+
+<body class = "body">
+    
+    <body>
+        <h2>Todo List</h2>
+        {% for x in range(0,mylist.length) %}
+           <h4>{{ x+1 }} {{ mylist.todo[x] }}</h4>
+        {% endfor %}
+        <div
+            style="
+                top: 64;
+                left: 256;
+                position: absolute;
+                z-index: 1;
+                visibility: show;">
+            <form action="demo_form.asp">
+                    <input type="text" name="toAdd" value="Put a new todo here!">
+                    <input type="submit" value="Add"><br>
+                    <input type="text" name="toRemove" value="Put the number of the item you'd like to remove here!">
+                    <input type="submit" value="Remove">
+            </form>
+        </div>
+    </body> 
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+</html>
