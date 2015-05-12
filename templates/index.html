@@ -1,32 +1,122 @@
-<!DOCTYPE html>
+
 <html>
 <title>Todo App</title>
 
 <head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!--- basic hello alert, makes sure jquery is working
+    <script>$(function() { alert('hello') });</script>
+    <script>$(function() { });</script>
+    --->
+    
+    
 </head>
 
 
 <body class = "body">
     
     <body>
-        <h2>Todo List</h2>
-        {% for x in range(0,mylist.length) %}
-           <h4>{{ x+1 }} {{ mylist.todo[x] }}</h4>
-        {% endfor %}
+        <h1>Todo List</h1>
+        <!--- Area for list to be made--->
+        <h4>
+        <p id="list">If you see this, something is broken!</p>
+        <script>
+            $(function() {
+                myArray = ["Feed dogs", "Do laundry", "Be productive"]
+                function clear(){
+                    
+                    document.getElementById("list").innerHTML = "";
+                    //document.getElementById("list").innerHTML += "<br>";      
+                }
+                  
+                function write(){
+                    clear();
+                    for (i = 0; i < myArray.length; i++){
+                        document.getElementById("list").innerHTML += myArray[i];
+                        document.getElementById("list").innerHTML += "<br><br>";   
+                    }   
+                }
+                write()
+                //document.getElementById("list").innerHTML = myArray[1];
+                
+                document.getElementById("clear").onclick = function() {clearElems()};           //Clear button
+                function clearElems() {
+                    myArray = [];
+                    write();
+                }
+                
+                document.getElementById("toRemove").onclick = function() {removeTask()};        //Remove button
+                function removeTask() {
+                    //alert('remove');
+                    var x = document.getElementById("toRemoveField").value;
+                    var found = ($.inArray(x, myArray) > -1);
+                    if (found) {
+                        var i = myArray.indexOf(x);
+                        myArray.splice(i, 1);                       
+                        document.getElementById("errors").innerHTML = "";    
+                        
+                    }
+                    else{
+                        document.getElementById("errors").innerHTML = "Todo not found in list";
+                        
+                    }
+                    write();
+                    
+                }
+                
+                document.getElementById("toAdd").onclick = function() {addTask()};              //Add Button
+                function addTask() {
+                    //alert('add');
+                    var x = document.getElementById("toAddField").value;
+                    myArray.push(x);
+                    write();
+                    document.getElementById("toAddField").value = "";
+                }
+                
+            });
+        </script>
+            
+            
+            
+        </div>
+        </h4>   
+        <div>
+        <p id="errors"></p>
         <div
             style="
-                top: 64;
-                left: 256;
+                bottom: 0;
+                right: 0;
                 position: absolute;
-                z-index: 1;
-                visibility: show;">
-            <form action="" method="post">
-                    <input type="text" name="toAdd" value="Put a new todo here!{{ request.form.toAdd }}">
-                    <input type="submit" value="Add"><br>
-                    <input type="text" name="toRemove" value="Put a done todo here!{{ request.form.toRemove }}">
-                    <input type="submit" value="Remove">
-            </form>
+                "
+            id="buttons">
+            <button id="clear">Clear</button>
         </div>
+        <div
+            style="
+                bottom: 0;
+                left: 0;
+                position: absolute;
+                "
+            id="buttons">
+            <button id="toAdd">Add task</button><br>
+            <button id="toRemove">Remove task</button>
+        </div>
+        <div
+            style="
+                bottom: 0;
+                left: 100;
+                position: absolute;
+            id="inputs">
+            
+            <input type="text" id="toAddField"><br>
+            <input type="text" id="toRemoveField"> 
+            
+            
+        </div>
+        
+        
+        
+        
     </body> 
 
 
