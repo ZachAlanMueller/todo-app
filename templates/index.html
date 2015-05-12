@@ -1,5 +1,6 @@
+<!DOCTYPE html>
 <html>
-
+<title>Todo App</title>
 
 <head>
 </head>
@@ -19,10 +20,10 @@
                 position: absolute;
                 z-index: 1;
                 visibility: show;">
-            <form action="demo_form.asp">
-                    <input type="text" name="toAdd" value="Put a new todo here!">
+            <form action="" method="post">
+                    <input type="text" name="toAdd" value="Put a new todo here!{{ request.form.toAdd }}">
                     <input type="submit" value="Add"><br>
-                    <input type="text" name="toRemove" value="Put removal # here!">
+                    <input type="text" name="toRemove" value="Put a done todo here!{{ request.form.toRemove }}">
                     <input type="submit" value="Remove">
             </form>
         </div>

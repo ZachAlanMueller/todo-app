@@ -1,30 +1,41 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
+#todos class
+class todos(object):
+    todo = ["Feed dogs", "Finish laundry", "Do Homework", "Call vet", "Get drycleaning"]
+    length = len(todo)
+    
+    def update(self):
+        self.length = len(self.todo)
+    
+    def add(self, msg):
+        self.todo.append(msg)
+        self.update()
+    
+    def remove(self, x):
+        self.todo.remove(x)
+        self.update()
+        
+mylist = todos()
+#Finish todo class
+
 @app.route('/', methods =['GET', 'POST'])
-def hello_world():
+def todoList():
     try:
-        #todo = ["Feed dog", "Finish laundry"]
-        class todos(object):
-            todo = ["Feed dogs", "Finish laundry", "Do Homework", "Call vet", "Get drycleaning"]
-            length = len(todo)
-            
-            def update(self):
-                length = len(todo)
-            
-            def add(self, msg):
-                todo.append(msg)
-                update()
-            
-            def remove(self, x):
-                todo.remove(x)
-                update()
-            
-            
-        mylist = todos()
         
-        
-        return render_template("index.html", mylist=mylist)
+        if request.method == 'POST':
+            if request.form['toAdd'] != "Put a new todo here!":
+                add = request.form['toAdd']
+                mylist.add(add)
+                print "Adding!"
+            elif request.form['toRemove'] != "Put a done todo here!":
+                rem = request.form['toRemove']
+                mylist.remove(rem)
+                print "Removing!"
+            return redirect(url_for("todoList"))
+        else:
+            return render_template("index.html", mylist=mylist)
     except Exception, e:
         return str(e)
 
