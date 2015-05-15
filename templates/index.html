@@ -4,18 +4,10 @@
 
 <head>
     
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> <!--- https jquery --->
     <script type="text/javascript" src="/static/script.js"></script>
-    
-    <!---
-    <script type="text/javascript" src="/static/alertscript.js"></script>
-    <script type="text/jsx" src="static/js/page.js"></script>
-    --->
-    <!--- basic hello alert, makes sure jquery is working
-    <script>$(function() { alert('hello') });</script>
-    <script>$(function() { });</script>
-    
-    --->
+    <script type="type/javascript" scr="/static/jquery.min.js"></script> <!--- local jquery --->
+
     
 </head>
 
@@ -26,18 +18,21 @@
         <h1>Todo List</h1>
         <!--- Area for list to be made--->
         <h4>
-        <p id="list">If you see this, something is broken!</p>
+        <p id="list">
+            {% for x in range(0, length) %}
+                {{ mylist[x] }}<br><br>
+            {% endfor %}
+        </p>
         
-        
-        
-        
+        <!---
         <script> 
             write()
             document.getElementById("clear").onclick = function() {clearElems()};           //Clear button
             document.getElementById("toRemove").onclick = function() {removeTask()};        //Remove button
             document.getElementById("toAdd").onclick = function() {addTask()};              //Add Button
-        </script>    
             
+        </script>    
+        --->    
             
         </div>
         </h4>   
@@ -52,6 +47,19 @@
             id="buttons">
             <button id="clear" style="width: 100px">Clear</button>
         </div>
+        <!---
+        <div 
+            <form action="" method="post">
+                <input type="text" name="toAdd" value="Put a new todo here!{{ request.form.toAdd }}">
+                <input type="submit" value="Add"><br>
+                <input type="text" name="toRemove" value="Put removal # here!">
+                <input type="text" name="toRemove" value="Put a done todo here!{{ request.form.toRemove }}">
+                <input type="submit" value="Remove">
+            </form>
+            
+        
+        </div>
+        --->
         <div 
             style="
                 top: 150;
@@ -61,15 +69,14 @@
             align="center"
             id="buttons">
             
-            <input type="text" id="inputField"><br>
-            
-            <button id="toAdd" style="width: 100px">Add task</button><br>
-            
-            <button id="toRemove" style="width: 100px">Remove task</button><br>
-            
-        
-        </div>
-        
+            <form method="post">
+                 <input type="text" id="inputField" name="inputField" value="{{ request.form.inputField }}"><br>
+             
+                 <input type="submit" name="submit" id="toAdd" style="width: 100px" value="Add Task"></button><br>
+                 
+                 <input type="submit" name="submit" id="toRemove" style="width: 100px" value="Remove Task"></button><br>
+             </form>
+         </div>
         
         
     </body> 
