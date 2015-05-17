@@ -3,11 +3,12 @@
 <title>Todo App</title>
 
 <head>
-    
+    <!--- JS SCRIPTS --->
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> <!--- https jquery --->
     <script type="text/javascript" src="/static/script.js"></script>
     <script type="type/javascript" scr="/static/jquery.min.js"></script> <!--- local jquery --->
-
+    <!--- END JS SCRIPTS --->
+    
     
 </head>
 
@@ -15,51 +16,58 @@
 <body class = "body">
     
     <body>
-        <h1>Todo List</h1>
-        <!--- Area for list to be made--->
-        <h4>
-        <p id="list">
-            {% for x in range(0, length) %}
-                {{ mylist[x] }}<br><br>
-            {% endfor %}
-        </p>
+        <!--- STYLE --->
         
-        <!---
-        <script> 
-            write()
-            document.getElementById("clear").onclick = function() {clearElems()};           //Clear button
-            document.getElementById("toRemove").onclick = function() {removeTask()};        //Remove button
-            document.getElementById("toAdd").onclick = function() {addTask()};              //Add Button
-            
-        </script>    
-        --->    
-            
-        </div>
-        </h4>   
-        <div>
+        <style>
+            #list {
+            background-color: #00FF00;
+            margin-left: 10px;
+            margin-right: 300px;
+            border-style: ridge;
+            border-color: blue;
+            border-width: 10px;
+            text-align: center;
+            }
+        </style>
+        <style>
+            body {
+            background-color: #66CCCC;
+            }
+        </style>
+        <style>
+            h1 {
+            color: black;
+            letter-spacing: 2px;
+            border-bottom-style: solid;
+            border-top-style: solid;
+            border-color: black;
+            border-width: 5px;
+            margin-left: 80px;
+            margin-right: 370px;
+            text-align: center;
+            }
+        </style>
+        
+        <!--- END STYLE --->
+        
+        
+        
+        <!--- BUTTONS --->
+        
         <p id="errors"></p>
         <div
             style="
                 bottom: 0;
-                right: 0;
+                right: 30px;
                 position: absolute;
                 "
             id="buttons">
-            <button id="clear" style="width: 100px">Clear</button>
+            <form method="post">
+                 <input type="submit" name="submit" id="clear" style="width: 100px" value="Clear">
+            </form>             
+
         </div>
-        <!---
-        <div 
-            <form action="" method="post">
-                <input type="text" name="toAdd" value="Put a new todo here!{{ request.form.toAdd }}">
-                <input type="submit" value="Add"><br>
-                <input type="text" name="toRemove" value="Put removal # here!">
-                <input type="text" name="toRemove" value="Put a done todo here!{{ request.form.toRemove }}">
-                <input type="submit" value="Remove">
-            </form>
-            
         
-        </div>
-        --->
         <div 
             style="
                 top: 150;
@@ -72,12 +80,28 @@
             <form method="post">
                  <input type="text" id="inputField" name="inputField" value="{{ request.form.inputField }}"><br>
              
-                 <input type="submit" name="submit" id="toAdd" style="width: 100px" value="Add Task"></button><br>
+                 <input type="submit" name="submit" id="toAdd" style="width: 100px" value="Add Task"><br>
                  
-                 <input type="submit" name="submit" id="toRemove" style="width: 100px" value="Remove Task"></button><br>
+                 <input type="submit" name="submit" id="toRemove" style="width: 100px" value="Remove Task"><br>
              </form>
-         </div>
+        </div>
         
+        <!--- END BUTTONS --->
+        
+        <!-- CONENT --->
+        <h1>Todo List</h1>
+        
+        <h4>
+        <p id="list"><br>
+            {% for x in range(0, length) %}
+                {{ mylist[x] }}<br><br>
+            {% endfor %}
+        </p>
+        
+        
+        </h4>   
+        
+        <!--- END CONTENT --->
         
     </body> 
 

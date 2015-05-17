@@ -95,6 +95,13 @@ def todoList():
                 else:
                     print "Element not in list"
                     call()
+            elif request.form['submit'] == "Clear":
+                
+                for x in range(0, r.llen('list')):
+                    r.lpop('list')
+                call()
+                
+                print "Clearing the list!" 
                 
                 
             return redirect(url_for("todoList"))
